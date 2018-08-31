@@ -2,7 +2,7 @@ import requests
 
 def testUpload(): 
 	url = 'http://127.0.0.1:8081/api/upload'
-	files = {'fa': open('/home/lenard_li/explorer.exe', 'rb')}           
+	files = {'fa': open('/home/lhtest/explorer.exe', 'rb')}           
 	data = {'filename':'filename'}
 	response = requests.post(url, files=files, data=data)
 	json = response
