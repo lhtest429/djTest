@@ -1,0 +1,38 @@
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+import json
+import virustotal
+import os
+import util
+
+BASE_DIR = '/tmp/djangotest'
+def hello(request):
+	uploadresult = virustotal.uploadFile()
+	resource = uploadresult['resource']
+	result = virustotal.retrive(resource)
+	return HttpResponse(json.dumps(result[0]),content_type="application/json")
+@csrf_exempt
+def upload(request):
+	if request.method == 'POST':
+        	obj = request.FILES.get('fa')
+		print(obj.name)
+		f = open(os.path.join(BASE_DIR, obj.name), 'wb')
+		for chunk in obj.chunks():
+			f.write(chunk)
+	        f.close()
+	~
+import hashlib
+import os
+import datetime
+from django.db import connection
+from Virus.models import VirusPath
+
+def GetFileMd5(filename):
+        if not os.path.isfile(filename):
+                return
+        myhash = hashlib.md5()
+        f = file(filename,'rb')
+        while True:
+
+	util.DBprocess()
+	return  HttpResponse('OK')
